@@ -4,6 +4,8 @@ __pycache__
 
 # folder of data
 /tys_raw
+/train_set
+/test_set
 
 # results
 /loss_sequence.png
