@@ -35,7 +35,7 @@ def if_match(f1,f2): # match : f1 is 6-hour earlier than f2, and they are same t
     tname2 = f2.split('_')
     
     if tname1[0]!=tname2[0]:
-	return False
+        return False
     
     date1 = tname1[1]
     date2 = tname2[1]
@@ -43,9 +43,9 @@ def if_match(f1,f2): # match : f1 is 6-hour earlier than f2, and they are same t
     h2 = date2[len(date2)-1]
     # the time end with 4 kinds of number : 00,06,12,18
     if (h1=='0' and h2=='6')or(h1=='6' and h2=='2')or(h1=='2' and h2=='8')or(h1=='8' and h2=='0'):
-	return True
+        return True
     else :
-	return False
+        return False
 
 def cut_pics(p): # only reserve central area
     box = (128,128,384,384)
@@ -67,7 +67,7 @@ def create_sample(source_dir,fname_1,fname_2,target_dir): # combine two raw imag
     complete_fname_2 = os.path.join(root,fnames[i])
 
     if not(is_image_file(complete_fname_1) and is_image_file(complete_fname_2)):
-	return 'Not image file: ',complete_fname_1,complete_fname_2
+        return 'Not image file: ',complete_fname_1,complete_fname_2
 
     if not if_match(fname_1,fname_2):
         return 'Two images are not matched: ',fname_1,fname_2
@@ -89,11 +89,11 @@ if __name__ == '__main__':
 
     train_root = path_ + '/train_set/'
     if not os.path.exists(train_root):
-	os.mkdir(train_root)
+        os.mkdir(train_root)
 	
     test_root = path_ + '/test_set/'
     if not os.path.exists(test_root):
-	os.mkdir(test_root)
+        os.mkdir(test_root)
 
     global count, oversample
     count = 0
@@ -101,36 +101,36 @@ if __name__ == '__main__':
 
     for root, _, fnames in sorted(os.walk(raw_dir)):
 
-	fnames = sorted(fnames)
-	boundary = int(len(fnames)*0.8) # 80% samples as train set and 20% samples as test set
+        fnames = sorted(fnames)
+        boundary = int(len(fnames)*0.8) # 80% samples as train set and 20% samples as test set
 
-	for i in range(1,boundary): # create train set
-	    
-	    info = create_sample(root,fnames[i-1],fnames[i],train_root)
-	    if info:
-                print info
-                    
-            if count > 30000 :
-                print 'Exceed the upper limit of a single file.'
-                break
-  
-	    if i % 100 == 99 :
-	        print 'have processed ',i+1,' files.'
-	        
-	print 'items in train set: ',count
-	count = 0
-
-	for i in range(boundary,len(fnames)): # create test set
-	    
-	    info = create_sample(root,fnames[i-1],fnames[i],test_root)
+        for i in range(1,boundary): # create train set
+            
+            info = create_sample(root,fnames[i-1],fnames[i],train_root)
             if info:
-                print info
+                print(info)
                     
             if count > 30000 :
-                print 'Exceed the upper limit of a single file.'
+                print('Exceed the upper limit of a single file.')
                 break
   
-	    if i % 100 == 99 :
-	        print 'have processed ',i+1,' files.'
+            if i % 100 == 99 :
+                print('have processed ',i+1,' files.')
+	        
+        print('items in train set: ',count)
+        count = 0
+
+        for i in range(boundary,len(fnames)): # create test set
+            
+            info = create_sample(root,fnames[i-1],fnames[i],test_root)
+            if info:
+                print(info)
+                    
+            if count > 30000 :
+                print('Exceed the upper limit of a single file.')
+                break
+  
+            if i % 100 == 99 :
+                print('have processed ',i+1,' files.')
           
-        print 'items in test set: ',count
+        print('items in test set: ',count)

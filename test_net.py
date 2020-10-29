@@ -33,7 +33,7 @@ if __name__ == '__main__':
         name = name.split('_')
         
         tid = name[0]
-        if tys.has_key(tid):
+        if tid in tys:
             if tys[tid] < wind:
                 tys[tid] = wind
         else :
@@ -43,13 +43,13 @@ if __name__ == '__main__':
         tys_time[tid_time] = wind
         
         if i % 100 == 99 :
-	    print 'have processed ',i+1,' samples.'
+            print('have processed ',i+1,' samples.')
 
-    tys = sorted(tys.iteritems(),key=lambda asd:asd[1],reverse=True)
+    tys = sorted(tys.items(),key=lambda asd:asd[1],reverse=True)
     for ty in tys:
-        print ty # show the sort of typhoons' wind
+        print(ty) # show the sort of typhoons' wind
 
-    tys_time = sorted(tys_time.iteritems(),key=lambda asd:asd[0],reverse=False)
+    tys_time = sorted(tys_time.items(),key=lambda asd:asd[0],reverse=False)
     for ty in tys_time:
         f.write(str(ty)+'\n') # record all result by time
     f.close()

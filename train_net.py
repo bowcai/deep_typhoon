@@ -25,7 +25,7 @@ def testset_loss(dataset,network):
     return all_loss/i
 
 if __name__ == '__main__':
-	
+
     path_ = os.path.abspath('.')
 
     trainset = ImageFolder(path_+'/train_set/',transform)
@@ -39,7 +39,7 @@ if __name__ == '__main__':
     init.xavier_uniform(net.conv2.weight.data,gain=1)
     init.constant(net.conv2.bias.data,0.1)
     #net.load_state_dict(torch.load(path_+'net_relu.pth')) 
-    print net
+    print(net)
 
     criterion = nn.L1Loss()
 
@@ -62,11 +62,11 @@ if __name__ == '__main__':
 
             running_loss += loss.data[0]
             if i%200 == 199:
-                print('[%d, %5d] loss: %.3f' % (epoch+1,i+1,running_loss/200))
+                print(('[%d, %5d] loss: %.3f' % (epoch+1,i+1,running_loss/200)))
                 running_loss = 0.0
 
-	test_loss = testset_loss(testset,net)
-	print('[%d ] test loss: %.3f' % (epoch+1,test_loss))
+        test_loss = testset_loss(testset,net)
+        print(('[%d ] test loss: %.3f' % (epoch+1,test_loss)))
 
     print('Finished Training')
     torch.save(net.state_dict(),path_+'/net_relu.pth')

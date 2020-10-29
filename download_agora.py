@@ -1,4 +1,4 @@
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 import re
 import os
 from bs4 import BeautifulSoup
@@ -14,7 +14,7 @@ def get_ty_links():
     tys = []
     ty_links = []
     for i in range(0,len(years)):
-        html = urllib2.urlopen(year_links[i]).read()
+        html = urllib.request.urlopen(year_links[i]).read()
         soup = BeautifulSoup(html,"html.parser")
         row1 = soup.find_all(attrs={"class":"ROW1"})
         row0 = soup.find_all(attrs={"class":"ROW0"})
@@ -36,10 +36,10 @@ def download_imgs(tys,ty_links):
     path_ = os.path.abspath('.')
     root = path_ + '/tys_raw/'
     if not os.path.exists(root):
-	os.mkdir(root)
+        os.mkdir(root)
     
     for i in range(0,len(ty_links)):
-        html = urllib2.urlopen(ty_links[i]).read()
+        html = urllib.request.urlopen(ty_links[i]).read()
         soup = BeautifulSoup(html,"html.parser")
         a_list = soup.find_all('a')
         # all satellite images for every 6 hour
@@ -48,7 +48,7 @@ def download_imgs(tys,ty_links):
                 continue
             
             image_link = 'http://agora.ex.nii.ac.jp/'+ a['href']
-            html_new = urllib2.urlopen(image_link).read()
+            html_new = urllib.request.urlopen(image_link).read()
             soup_new = BeautifulSoup(html_new,"html.parser")
             tr_list = soup_new.find_all('tr')
 
@@ -84,15 +84,15 @@ def download_imgs(tys,ty_links):
                 filename = rename(filename)
 
                 f = open(root+filename+'.jpg','wb')
-                req = urllib2.urlopen(s)
+                req = urllib.request.urlopen(s)
                 buf = req.read()
                 f.write(buf)
                 f.close()
 
             except Exception as e:
-                print e
+                print(e)
 
-	print tys[i],'has been downloaded.'
+    print(tys[i],'has been downloaded.')
 
 def rename(fname): # there maybe some unexcepted char in fname, drop them
 

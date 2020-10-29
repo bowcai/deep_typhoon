@@ -43,8 +43,8 @@ class ImageFolder(data.Dataset):
 
         imgs = make_dataset(root)
         if len(imgs) == 0:
-            raise(RuntimeError("Found 0 images in subfolders of: " + root + "\n"
-                               "Supported image extensions are: " + ",".join(IMG_EXTENSIONS)))
+            raise RuntimeError("Found 0 images in subfolders of: " + root + "\n"
+                               "Supported image extensions are: " + ",".join(IMG_EXTENSIONS))
 
         self.root = root
         self.imgs = imgs
@@ -63,8 +63,8 @@ class ImageFolder(data.Dataset):
         return img, target
     
     def __getitemName__(self, index):
-	_, fname = self.imgs[index]
-	return fname.split('.')[0]
+        _, fname = self.imgs[index]
+        return fname.split('.')[0]
 
     def __len__(self):
         return len(self.imgs)

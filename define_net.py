@@ -8,7 +8,7 @@ class Net(nn.Module):
         self.conv1 = nn.Conv2d(2,8,11)
         self.pool1 = nn.MaxPool2d(6,6)
         self.conv2 = nn.Conv2d(8,20,12)
-	self.pool2 = nn.MaxPool2d(5,5)
+        self.pool2 = nn.MaxPool2d(5,5)
         self.fc1 = nn.Linear(20*6*6,80)
         self.fc2 = nn.Linear(80,16)
         self.fc3 = nn.Linear(16,1)
