@@ -1,15 +1,13 @@
 import torch
 import os
-from my_transform import demension_reduce
-from my_image_folder import ImageFolder
-from torch.autograd import Variable
-from my_transform import transform
-from define_net import Net
+from src.my_image_folder import ImageFolder
+from src.my_transform import transform
+from src.define_net import Net
 from torch.autograd import Variable
 
 if __name__ == '__main__':
         
-    path_ = os.path.abspath('.')
+    path_ = os.path.abspath('..')
 
     net = Net() 
     net.load_state_dict(torch.load(path_+'/net_relu.pth')) # your net

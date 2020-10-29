@@ -2,7 +2,7 @@ import os
 import os.path
 import random
 from PIL import Image
-from my_image_folder import is_image_file
+from src.my_image_folder import is_image_file
 
 def oversample_num(wind): # return how many to oversample (according to wind level)
     if wind < 60:
@@ -84,7 +84,7 @@ def create_sample(source_dir,fname_1,fname_2,target_dir): # combine two raw imag
 
 if __name__ == '__main__':
     
-    path_ = os.path.abspath('.')
+    path_ = os.path.abspath('..')
     raw_dir = path_ + '/tys_raw/'
 
     train_root = path_ + '/train_set/'

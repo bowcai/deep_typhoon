@@ -1,13 +1,12 @@
-from define_net import Net
+from src.define_net import Net
 from torch.autograd import Variable
 import torch.nn as nn
 import torch.nn.init as init
 import torch.optim as optim
 import torch
-import torchvision
 import os
-from my_transform import transform
-from my_image_folder import ImageFolder
+from src.my_transform import transform
+from src.my_image_folder import ImageFolder
 
 def testset_loss(dataset,network):
 
@@ -26,7 +25,7 @@ def testset_loss(dataset,network):
 
 if __name__ == '__main__':
 
-    path_ = os.path.abspath('.')
+    path_ = os.path.abspath('..')
 
     trainset = ImageFolder(path_+'/train_set/',transform)
     trainloader = torch.utils.data.DataLoader(trainset,batch_size=8,
