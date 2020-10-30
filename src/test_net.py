@@ -1,20 +1,21 @@
 import torch
 import os
-from src.my_image_folder import ImageFolder
-from src.my_transform import transform
-from src.define_net import Net
+from my_image_folder import ImageFolder
+from my_transform import transform
+from define_net import Net
 from torch.autograd import Variable
 
 if __name__ == '__main__':
         
     path_ = os.path.abspath('..')
+    results_path = path_ + '/results'
 
     net = Net() 
-    net.load_state_dict(torch.load(path_+'/net_relu.pth')) # your net
+    net.load_state_dict(torch.load(results_path+'/net_relu.pth')) # your net
 
     testset = ImageFolder(path_+'/test_set/',transform) # your test set
 
-    f = open(path_+'/result_relu.txt','w') # where to write answer
+    f = open(results_path+'/result_relu.txt','w') # where to write answer
 
     tys = {} # map typhoon to its max wind
     tys_time = {} # map typhoon-time to wind

@@ -1,12 +1,12 @@
-from src.define_net import Net
+from define_net import Net
 from torch.autograd import Variable
 import torch.nn as nn
 import torch.nn.init as init
 import torch.optim as optim
 import torch
 import os
-from src.my_transform import transform
-from src.my_image_folder import ImageFolder
+from my_transform import transform
+from my_image_folder import ImageFolder
 
 def testset_loss(dataset,network):
 
@@ -26,6 +26,10 @@ def testset_loss(dataset,network):
 if __name__ == '__main__':
 
     path_ = os.path.abspath('..')
+    results_path = path_ + '/results'
+
+    if not os.path.exists(results_path):
+        os.mkdir(results_path)
 
     trainset = ImageFolder(path_+'/train_set/',transform)
     trainloader = torch.utils.data.DataLoader(trainset,batch_size=8,
@@ -37,7 +41,7 @@ if __name__ == '__main__':
     init.constant(net.conv1.bias.data,0.1)
     init.xavier_uniform(net.conv2.weight.data,gain=1)
     init.constant(net.conv2.bias.data,0.1)
-    #net.load_state_dict(torch.load(path_+'net_relu.pth')) 
+    #net.load_state_dict(torch.load(results_path+'/net_relu.pth')) 
     print(net)
 
     criterion = nn.L1Loss()
@@ -68,4 +72,4 @@ if __name__ == '__main__':
         print(('[%d ] test loss: %.3f' % (epoch+1,test_loss)))
 
     print('Finished Training')
-    torch.save(net.state_dict(),path_+'/net_relu.pth')
+    torch.save(net.state_dict(),results_path+'/net_relu.pth')

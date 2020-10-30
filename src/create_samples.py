@@ -2,7 +2,7 @@ import os
 import os.path
 import random
 from PIL import Image
-from src.my_image_folder import is_image_file
+from my_image_folder import is_image_file
 
 def oversample_num(wind): # return how many to oversample (according to wind level)
     if wind < 60:
