@@ -6,11 +6,11 @@ This CNN learns to map the satellite images of typhoons to their max wind speed 
 ## Improvements
 This repo is forked from [melissa135/deep_typhoon](https://github.com/melissa135/deep_typhoon)
 and makes several improvements (so far):
-* Upgrade to Python3 and fix indentation issues with spaces and tabs 
-(c170dd744d6e4890bfea46aaa8d98739e6a6ff26)
-* Use multi-threads to speed up the download of image
-and will retry when connections timeout. 
-(27995fa09530f248b95e7fd35530db3f87a6ccc8)
+* [Upgrade to Python3 and fix indentation issues with spaces and tabs
+](https://github.com/BeVWin/deep_typhoon/commit/c170dd744d6e4890bfea46aaa8d98739e6a6ff26)
+* [Use multi-threads to speed up the download of image
+and will retry when connections timeout.
+](https://github.com/BeVWin/deep_typhoon/commit/27995fa09530f248b95e7fd35530db3f87a6ccc8)
 
 TODO:
 * Use CUDA to speed up the training
@@ -25,9 +25,6 @@ TODO:
 2. Run `create_samples.py`, convert raw data into the legal samples for our CNN, create two new forlder `train_set` and `test_set`.  
 3. Train CNN using `train_net.py`, the trained CNN will be saved as a disk file `net_relu.pth`.  
 4. Run `test_net.py`, analysis the test set.  
-
-After 10 epoches training the CNN regressor reached mean loss about 8 (knots) in train set and about 10 (knots) in test set.  
-![](https://raw.githubusercontent.com/melissa135/deep_typhoon/master/loss_sequence.png)  
 
 Here is what this CNN thinks of the top 20 typhoons sorted by max wind.  
 ```
