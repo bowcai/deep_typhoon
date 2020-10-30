@@ -21,10 +21,10 @@ and will retry when connections timeout.
 
 ## Usage
 Run in [`main.py`](/main.py):
-1. Run `download_agora()`, download the satellite images of typhoons to folder `tys_raw`.  
-2. Run `create_samples()`, convert raw data into the legal samples for our CNN, create two new forlder `train_set` and `test_set`.  
-3. Train CNN using `train_net()`, the trained CNN will be saved as a disk file `net_relu.pth`.  
-4. Run `test_net()`, analysis the test set.  
+1. Run [`download_agora()`](/src/download_agora.py#L177), download the satellite images of typhoons to folder `tys_raw`.  
+2. Run [`create_samples()`](/src/create_samples.py#L94), convert raw data into the legal samples for our CNN, create two new forlder `train_set` and `test_set`.  
+3. Train CNN using [`train_net()`](/src/train_net.py#L30), the trained CNN will be saved as a disk file `net_relu.pth`.  
+4. Run [`test_net()`](/src/test_net.py#L8), analysis the test set.  
 
 Here is what this CNN thinks of the top 20 typhoons sorted by max wind.  
 ```
@@ -51,8 +51,7 @@ Here is what this CNN thinks of the top 20 typhoons sorted by max wind.
 ```
 
 ## Tips
-* Memory should be at least 1.5G .  
-* This project is written without `cuda()`, while you can use `cuda()` to transfer the CNN onto GPU and speedup the training.  
+* Memory should be at least 1.5G .   
 * The images and labels are crawled from agora.ax.nii.ac.jp/digital-typhoon , and the labels are refered to JMA(Japan Meteorological agency).  
 
 ## More Information
