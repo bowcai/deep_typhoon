@@ -170,7 +170,7 @@ def create_threads(start_year, end_year, thread_count=20):
             st_et.append((start_year + i * thread_year, end_year + 1))
     print(st_et)
     for i in range(len(st_et)):
-        # thread.append(myThread(i,st_et[i][0],st_et[i][1]).start())
+        # thread.append(MyThread(i,st_et[i][0],st_et[i][1]).start())
         MyThread(i, st_et[i][0], st_et[i][1]).start()
     # for j in thread:
     #     j.join()
