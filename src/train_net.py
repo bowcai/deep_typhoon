@@ -10,7 +10,7 @@ from src.my_transform import transform
 from src.my_image_folder import ImageFolder
 
 
-def testset_loss(dataset, network):
+def testset_loss(dataset, network, device):
     loader = DataLoader(dataset, batch_size=1, num_workers=2)
 
     all_loss = 0.0
@@ -18,7 +18,6 @@ def testset_loss(dataset, network):
         inputs, labels = data
         inputs = Variable(inputs)
 
-        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         inputs = inputs.to(device)
 
         outputs = network(inputs).squeeze(-1)
@@ -40,8 +39,8 @@ def train_net(path_):
 
     net = Net()
 
-    if torch.cuda.is_available():
-        net.cuda()
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    net.to(device)
 
     init.xavier_uniform_(net.conv1.weight.data, gain=1)
     init.constant_(net.conv1.bias.data, 0.1)
@@ -62,7 +61,6 @@ def train_net(path_):
             inputs, labels = data
             inputs, labels = Variable(inputs), Variable(labels)
 
-            device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
             inputs = inputs.to(device)
             labels = labels.to(device)
 
@@ -78,7 +76,7 @@ def train_net(path_):
                 print(('[%d, %5d] loss: %.3f' % (epoch + 1, i + 1, running_loss / 200)))
                 running_loss = 0.0
 
-        test_loss = testset_loss(testset, net)
+        test_loss = testset_loss(testset, net, device)
         print(('[%d ] test loss: %.3f' % (epoch + 1, test_loss)))
 
     print('Finished Training')

@@ -10,8 +10,8 @@ def test_net(path_):
 
     net = Net()
 
-    if torch.cuda.is_available():
-        net.cuda()
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    net.to(device)
 
     net.load_state_dict(torch.load(results_path + '/net_relu.pth'))  # your net
 
@@ -27,8 +27,6 @@ def test_net(path_):
         name = testset.__getitemName__(i)
 
         image = Variable(image)
-
-        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         image = image.to(device)
 
         output = net(image).squeeze(-1)
