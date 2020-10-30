@@ -112,20 +112,18 @@ def download_imgs(path_, tys, ty_links):
                 filename = tys[i] + '_' + s[len(s) - 19:len(s) - 11] + '_' + wind + '_' + pressure
                 filename = rename(filename)
 
-                f = open(root + filename + '.jpg', 'wb')
+                with open(root + filename + '.jpg', 'wb') as f:
+                    req = None
+                    while True:
+                        try:
+                            req = urllib.request.urlopen(s)
+                        except Exception as e:
+                            print(e)
+                            continue
+                        break
 
-                req = None
-                while True:
-                    try:
-                        req = urllib.request.urlopen(s)
-                    except Exception as e:
-                        print(e)
-                        continue
-                    break
-
-                buf = req.read()
-                f.write(buf)
-                f.close()
+                    buf = req.read()
+                    f.write(buf)
 
             except Exception as e:
                 print(e)

@@ -13,8 +13,6 @@ def test_net(path_):
 
     testset = ImageFolder(path_ + '/test_set/', transform)  # your test set
 
-    f = open(results_path + '/result_relu.txt', 'w')  # where to write answer
-
     tys = {}  # map typhoon to its max wind
     tys_time = {}  # map typhoon-time to wind
 
@@ -26,6 +24,7 @@ def test_net(path_):
 
         output = net(Variable(image)).squeeze(-1)
         wind = output.data[0]
+        wind = wind.item()  # Convert tensor to float data type
 
         name = name.split('_')
 
@@ -47,6 +46,8 @@ def test_net(path_):
         print(ty)  # show the sort of typhoons' wind
 
     tys_time = sorted(tys_time.items(), key=lambda asd: asd[0], reverse=False)
-    for ty in tys_time:
-        f.write(str(ty) + '\n')  # record all result by time
-    f.close()
+
+    # Write result to a csv file
+    with open(results_path + '/result_relu.csv', 'w') as f:
+        for ty in tys_time:
+            f.write('%s,%f\n' % (ty[0], ty[1]))  # record all result by time
