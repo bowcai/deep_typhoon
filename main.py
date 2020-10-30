@@ -6,7 +6,7 @@ from src.test_net import test_net
 
 if __name__ == '__main__':
     path_ = os.path.abspath('.')
-    # download_agora(path_)
-    # create_samples(path_)
+    download_agora(path_)
+    create_samples(path_)
     train_net(path_)
-    # test_net(path_)
+    test_net(path_)

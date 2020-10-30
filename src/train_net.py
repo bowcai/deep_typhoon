@@ -18,8 +18,8 @@ def testset_loss(dataset, network):
         inputs, labels = data
         inputs = Variable(inputs)
 
-        outputs = network(inputs)
-        all_loss = all_loss + abs(labels[0] - outputs.data[0][0])
+        outputs = network(inputs).squeeze(-1)
+        all_loss = all_loss + abs(labels[0] - outputs.data[0])
 
     return all_loss / len(loader)
 
@@ -57,12 +57,12 @@ def train_net(path_):
 
             optimizer.zero_grad()
 
-            outputs = net(inputs)
+            outputs = net(inputs).squeeze(-1)
             loss = criterion(outputs, labels.float())
             loss.backward()
             optimizer.step()
 
-            running_loss += loss.data
+            running_loss += loss.item()
             if i % 200 == 199:
                 print(('[%d, %5d] loss: %.3f' % (epoch + 1, i + 1, running_loss / 200)))
                 running_loss = 0.0

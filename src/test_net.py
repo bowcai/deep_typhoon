@@ -24,8 +24,8 @@ def test_net(path_):
         image = image.expand(1, image.size(0), image.size(1), image.size(2))  # a batch with 1 sample
         name = testset.__getitemName__(i)
 
-        output = net(Variable(image))
-        wind = output.data[0][0]  # output is a 1*1 tensor
+        output = net(Variable(image)).squeeze(-1)
+        wind = output.data[0]
 
         name = name.split('_')
 
