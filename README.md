@@ -11,9 +11,8 @@ and makes several improvements (so far):
 * [Use multi-threads to speed up the download of image
 and will retry when connections timeout.
 ](https://github.com/BeVWin/deep_typhoon/commit/27995fa09530f248b95e7fd35530db3f87a6ccc8)
-
-TODO:
-* Use CUDA to speed up the training
+* [Use CUDA to speed up the training
+](https://github.com/BeVWin/deep_typhoon/commit/a566250e0651316726a5e65833335ea520c155a5)
 
 ## Requirements
 * BeautifulSoup  
