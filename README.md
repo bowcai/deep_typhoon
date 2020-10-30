@@ -7,12 +7,12 @@ The labeled train set is obtained from [agora/JMA](http://agora.ex.nii.ac.jp/dig
 ## Improvements
 This repo is forked from [melissa135/deep_typhoon](https://github.com/melissa135/deep_typhoon)
 and makes several improvements (so far):
-* [Upgrade to Python3 and fix indentation issues with spaces and tabs
+* [Upgrade to Python3 and fix indentation issues of spaces and tabs.
 ](https://github.com/BeVWin/deep_typhoon/commit/c170dd744d6e4890bfea46aaa8d98739e6a6ff26)
 * [Use multi-threads to speed up the download of image
 and will retry when connections timeout.
 ](https://github.com/BeVWin/deep_typhoon/commit/27995fa09530f248b95e7fd35530db3f87a6ccc8)
-* [Use CUDA to speed up the training
+* [Use CUDA to speed up the training.
 ](https://github.com/BeVWin/deep_typhoon/commit/a566250e0651316726a5e65833335ea520c155a5)
 
 ## Requirements
@@ -53,7 +53,7 @@ Here is what this CNN thinks of the top 20 typhoons sorted by max wind.
 
 ## Tips
 * Memory should be at least 1.5G .   
-* The images and labels are crawled from http://agora.ex.nii.ac.jp/digital-typhoon , and the labels are refered to JMA(Japan Meteorological agency).  
+* The images and labels are crawled from http://agora.ex.nii.ac.jp/digital-typhoon, and the labels are refered to JMA(Japan Meteorological agency).  
 
 ## More Information
 See https://mp.weixin.qq.com/s/PBm6sre7u3pEbx_aqjZLwA    
