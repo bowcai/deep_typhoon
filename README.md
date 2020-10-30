@@ -20,7 +20,7 @@ and will retry when connections timeout.
 * Pytorch  
 
 ## Usage
-Run in `main.py`:
+Run in [`main.py`](/main.py):
 1. Run `download_agora()`, download the satellite images of typhoons to folder `tys_raw`.  
 2. Run `create_samples()`, convert raw data into the legal samples for our CNN, create two new forlder `train_set` and `test_set`.  
 3. Train CNN using `train_net()`, the trained CNN will be saved as a disk file `net_relu.pth`.  
