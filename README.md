@@ -1,7 +1,8 @@
 # deep_typhoon
-Analysis satellite images of typhoons by deep-learning (CNN), based on PyTorch.  
+Analysis satellite images of typhoons by deep-learning (CNN), based on [PyTorch](https://pytorch.org/).  
 
-This CNN learns to map the satellite images of typhoons to their max wind speed from. The labeled train set is obtained from agora/JMA.    
+This CNN learns to map the satellite images of typhoons to their max wind speed from. 
+The labeled train set is obtained from [agora/JMA](http://agora.ex.nii.ac.jp/digital-typhoon/).    
     
 ## Improvements
 This repo is forked from [melissa135/deep_typhoon](https://github.com/melissa135/deep_typhoon)
@@ -52,7 +53,7 @@ Here is what this CNN thinks of the top 20 typhoons sorted by max wind.
 
 ## Tips
 * Memory should be at least 1.5G .   
-* The images and labels are crawled from agora.ax.nii.ac.jp/digital-typhoon , and the labels are refered to JMA(Japan Meteorological agency).  
+* The images and labels are crawled from http://agora.ex.nii.ac.jp/digital-typhoon , and the labels are refered to JMA(Japan Meteorological agency).  
 
 ## More Information
 See https://mp.weixin.qq.com/s/PBm6sre7u3pEbx_aqjZLwA    
