@@ -21,10 +21,11 @@ TODO:
 * Pytorch  
 
 ## Usage
-1. Run `download_agora.py`, download the satellite images of typhoons to folder `tys_raw`.  
-2. Run `create_samples.py`, convert raw data into the legal samples for our CNN, create two new forlder `train_set` and `test_set`.  
-3. Train CNN using `train_net.py`, the trained CNN will be saved as a disk file `net_relu.pth`.  
-4. Run `test_net.py`, analysis the test set.  
+Run in `main.py`:
+1. Run `download_agora()`, download the satellite images of typhoons to folder `tys_raw`.  
+2. Run `create_samples()`, convert raw data into the legal samples for our CNN, create two new forlder `train_set` and `test_set`.  
+3. Train CNN using `train_net()`, the trained CNN will be saved as a disk file `net_relu.pth`.  
+4. Run `test_net()`, analysis the test set.  
 
 Here is what this CNN thinks of the top 20 typhoons sorted by max wind.  
 ```

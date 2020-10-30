@@ -36,6 +36,7 @@ def default_transform(target):
     wind = target.split('_')[2]
     return float(wind)
 
+
 class ImageFolder(data.Dataset):
 
     def __init__(self, root, transform=None, target_transform=default_transform,
@@ -44,7 +45,7 @@ class ImageFolder(data.Dataset):
         imgs = make_dataset(root)
         if len(imgs) == 0:
             raise RuntimeError("Found 0 images in subfolders of: " + root + "\n"
-                               "Supported image extensions are: " + ",".join(IMG_EXTENSIONS))
+                               + "Supported image extensions are: " + ",".join(IMG_EXTENSIONS))
 
         self.root = root
         self.imgs = imgs
@@ -61,7 +62,7 @@ class ImageFolder(data.Dataset):
             target = self.target_transform(target)
 
         return img, target
-    
+
     def __getitemName__(self, index):
         _, fname = self.imgs[index]
         return fname.split('.')[0]

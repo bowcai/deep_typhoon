@@ -43,8 +43,7 @@ def get_ty_links(start_year, end_year):
     return tys, ty_links
 
 
-def download_imgs(tys, ty_links):
-    path_ = os.path.abspath('..')
+def download_imgs(path_, tys, ty_links):
     root = path_ + '/tys_raw/'
     if not os.path.exists(root):
         os.mkdir(root)
@@ -130,10 +129,10 @@ def download_imgs(tys, ty_links):
 
             except Exception as e:
                 print(e)
-            print(tys[i], 'has been downloaded.')
+            # print(tys[i], 'has been downloaded.')
 
 
-def rename(fname):  # there maybe some unexcepted char in fname, drop them
+def rename(fname):  # there maybe some unexpected char in fname, drop them
 
     new_fname = fname.replace('[', '')
     new_fname = new_fname.replace(']', '')
@@ -143,20 +142,21 @@ def rename(fname):  # there maybe some unexcepted char in fname, drop them
 
 
 class MyThread(threading.Thread):
-    def __init__(self, thread_id, start_year, end_year):
+    def __init__(self, path_, thread_id, start_year, end_year):
         threading.Thread.__init__(self)
-        self.threadID = thread_id
+        self.path_ = path_
+        self.thread_id = thread_id
         self.start_year = start_year
         self.end_year = end_year
 
     def run(self):
         print("Thread starts: " + self.name)
         ts, links = get_ty_links(self.start_year, self.end_year)
-        download_imgs(ts, links)
+        download_imgs(self.path_, ts, links)
         print("Thread exits: " + self.name)
 
 
-def create_threads(start_year, end_year, thread_count=20):
+def create_threads(path_, start_year, end_year, thread_count=20):
     time_span = end_year - start_year + 1
     st_et = []
     # thread=[]
@@ -171,10 +171,10 @@ def create_threads(start_year, end_year, thread_count=20):
     print(st_et)
     for i in range(len(st_et)):
         # thread.append(MyThread(i,st_et[i][0],st_et[i][1]).start())
-        MyThread(i, st_et[i][0], st_et[i][1]).start()
+        MyThread(path_, i, st_et[i][0], st_et[i][1]).start()
     # for j in thread:
     #     j.join()
 
 
-if __name__ == "__main__":
-    create_threads(1979, 2019, 20)
+def download_agora(path_):
+    create_threads(path_, 1979, 2019, 20)
