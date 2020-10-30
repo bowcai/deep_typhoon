@@ -9,6 +9,10 @@ def test_net(path_):
     results_path = path_ + '/results'
 
     net = Net()
+
+    if torch.cuda.is_available():
+        net.cuda()
+
     net.load_state_dict(torch.load(results_path + '/net_relu.pth'))  # your net
 
     testset = ImageFolder(path_ + '/test_set/', transform)  # your test set
@@ -22,7 +26,12 @@ def test_net(path_):
         image = image.expand(1, image.size(0), image.size(1), image.size(2))  # a batch with 1 sample
         name = testset.__getitemName__(i)
 
-        output = net(Variable(image)).squeeze(-1)
+        image = Variable(image)
+
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        image = image.to(device)
+
+        output = net(image).squeeze(-1)
         wind = output.data[0]
         wind = wind.item()  # Convert tensor to float data type
 

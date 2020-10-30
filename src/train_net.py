@@ -18,6 +18,9 @@ def testset_loss(dataset, network):
         inputs, labels = data
         inputs = Variable(inputs)
 
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        inputs = inputs.to(device)
+
         outputs = network(inputs).squeeze(-1)
         all_loss = all_loss + abs(labels[0] - outputs.data[0])
 
@@ -36,6 +39,10 @@ def train_net(path_):
     testset = ImageFolder(path_ + '/test_set/', transform)
 
     net = Net()
+
+    if torch.cuda.is_available():
+        net.cuda()
+
     init.xavier_uniform_(net.conv1.weight.data, gain=1)
     init.constant_(net.conv1.bias.data, 0.1)
     init.xavier_uniform_(net.conv2.weight.data, gain=1)
@@ -54,6 +61,10 @@ def train_net(path_):
 
             inputs, labels = data
             inputs, labels = Variable(inputs), Variable(labels)
+
+            device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+            inputs = inputs.to(device)
+            labels = labels.to(device)
 
             optimizer.zero_grad()
 

@@ -1,5 +1,6 @@
 import torch.nn as nn
 import torch.nn.functional as F
+import torch
 
 
 class Net(nn.Module):
@@ -14,6 +15,9 @@ class Net(nn.Module):
         self.fc3 = nn.Linear(16, 1)
 
     def forward(self, x):
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        x = x.to(device)
+
         x = self.pool1(F.relu(self.conv1(x)))  # better than sigmoid/tanh
         x = self.pool2(F.relu(self.conv2(x)))  # better than sigmoid/tanh
         x = x.view(-1, self.num_flat_features(x))
